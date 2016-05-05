@@ -1,0 +1,65 @@
+<!-- <include file="Blog/Home/View/Common/header.html" /> -->
+<!DOCTYPE html PUBLIC "-//W3C//Ddiv XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Ddiv/xhtml1-transitional.ddiv">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>[title]</title>
+		<!-- <link rel="stylesheet" href="__PUBLIC__/{$module_name}/Css/public.css" /> -->
+		<link rel="stylesheet" href="__PUBLIC__/{$module_name}/Css/index.css" />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/jquery-1.7.2.min.js"></script>
+		<!-- {:baiduAccount()} -->
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/{$module_name}/Js/Editor/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/{$module_name}/Js/Editor/ueditor.all.min.js"> </script>
+	</head>	
+<body>
+	<form action="{:U(MODULE_NAME.'/Blog/edit')}" method="post" >
+
+		<select name="cat_id">
+		{:W('Cat/select',array($category,$rest['cat_id']))}
+		</select>
+
+		<table class="table"> 
+			<tr>
+				<td>TITLE</td>
+				<td><input  name="title" value="{$rest.title}"  /></td>
+			</tr>
+			<tr>
+				<td>CLICK</td>
+				<td><input  name="click"  value="{$rest.click}" /></td>
+			</tr>
+			<tr>
+				<td>SORT</td>
+				<td><input  name="sort"  value="{$rest.sort}" /></td>
+			</tr>
+			<tr>
+				<td>ATTR</td>
+				<td>
+					{:W('Attr/blog_check',array($attr,$rest['attr']))}
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">CONTENT</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div style="height: 100%;">
+						<!-- 加载编辑器的容器 -->
+						<script id="container" style="height: 100%;" name="content"  type="text/plain">{$rest.content}</script>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="id" value="{$rest.id}" />
+		<div class="fixed-bottom" >
+			<div class="fixed-bottom fixed-but">
+				<input   type="submit" value="SUBMIT" />
+			</div>
+		</div>
+	</form>
+</body>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+	var ue = UE.getEditor('container');
+	// ue.enableAutoSave = false;
+</script>
+</html>
